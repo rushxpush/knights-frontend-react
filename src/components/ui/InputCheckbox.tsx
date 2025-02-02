@@ -1,17 +1,17 @@
 export interface InputProps {
   id: string;
   label: string;
-  fieldName: string;
   value: string|number;
-  handleInput: (id: string, checked: boolean) => void
+  disabled: boolean;
+  handleInput: (id: string) => void
 }
 
-export function InputCheckbox({id, label, fieldName, value, handleInput}: InputProps) {
+export function InputCheckbox({id, label, value, disabled, handleInput}: InputProps) {
 
 
   return (
     <div>
-      <input className="input-checkbox" type="checkbox" value={value || ""} onChange={e => handleInput(id, e.target.checked)} />
+      <input className="input-checkbox" type="checkbox" value={value || ""} onChange={() => handleInput(id)} disabled={disabled} />
       <label className="input">{label}</label>
     </div>
   );

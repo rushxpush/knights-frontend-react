@@ -1,17 +1,12 @@
-import { useEffect, useState } from "react";
-import { fetchWeaponsList } from "../../utils/weaponsData";
 import { InputCheckbox } from "../ui/InputCheckbox";
 import { Weapon } from "./CreateKnight.types";
 import { Button } from "../ui/Button";
+import { useWeapons } from "../../context/WeaponsContext";
 
-interface SelectWeaponsProps {
-  weaponsList: Weapon[];
-  selectedWeapons: Weapon[];
-  handleInput: (id: string, checked: boolean) => void;
-  handleClick: (e: object) => void;
-}
 
-export function SelectWeapons({weaponsList, selectedWeapons, handleInput, handleClick}: SelectWeaponsProps) {
+export function SelectWeapons() {
+  const { weaponsList, checkedWeaponsId, toggleWeaponSelection, confirmSelectedWeapons } = useWeapons();
+  console.log('selectedWeaponsId: ', checkedWeaponsId)
   return (
     <div>
     <div className="container border-container input-checkbox-container">
@@ -22,13 +17,13 @@ export function SelectWeapons({weaponsList, selectedWeapons, handleInput, handle
             key={weapon.id} 
             id={weapon.id}
             label={weapon.name} 
-            fieldName="name" 
             value={weapon.name.toLowerCase()} 
-            handleInput={handleInput} 
+            // disabled={checkedWeaponsId.has(weapon.id)}
+            handleInput={toggleWeaponSelection} 
           />
         ))
       }
-      <Button text="Adicionar Armas" handleClick={(e) => handleClick(e)} />
+      <Button text="Adicionar Armas" handleClick={(e) => confirmSelectedWeapons(e)} />
     </div>
 
     </div>

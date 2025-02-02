@@ -1,50 +1,81 @@
-# React + TypeScript + Vite
+# Knights Challenge - Frontend React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[Tecnologias](#tecnologias) | [Funcionalidades](#funcionalidades) | [Descrição](#descrição) | [Instalação](#instalação) | [Imagens](#imagens) | [Suporte](#suporte) | [Lista de bugs](#lista-de-bugs) | [Bugs Resolvidos](#bugs-resolvidos)
 
-Currently, two official plugins are available:
+## Tecnologias
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<ul>
+  <li>React</li>
+  <li>ContextAPI</li>
+</ul>
 
-## Expanding the ESLint configuration
+[Ir para o topo](#knights-challenge---frontend-react)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Funcionalidades
 
-- Configure the top-level `parserOptions` property like this:
+- &#x2610; Tela de cadastro de knight
+- &#x2610; Lógica para selecionar armas
+- &#x2610; Lógica para equipar arma
+- &#x2610; Lógica para remover arma 
+- &#x2610; Funções geradoras de atributos aleatórios
+- &#x2610; Handler para enviar POST request para cadastrar knight no servidor
+- &#x2610; Containerizar aplicação
+- &#x2610; Criar componente para exibir lista de todos os knights criados
+- &#x2610; Permitir update de nickname de knight
+- &#x2610; Filtro para exibir apenas knights que viram heróis
+- &#x2610; Modal para mostrar se mudanças foram bem (ou mal) sucedidas no banco.
+- &#x2610; Botão para remover knight
+- &#x2610; Filtro para exibir apenas knights que viraram heróis
+- &#x2610; Botão para limpar input de criação de knight
+- &#x2610; Aplicar os tipos do Typescript em todas as funções e variáveis que faltam
+- &#x2610; Adicionar validação para POST request. Não permitir que request seja feito sem que todos os dados estejam preenchidos
+- &#x2610; Componente para ver os detalhes de um knight
+- &#x2610; Implementar testes unitários
+- &#x2610; Testes e2e
+- &#x2610; Refatorar visual, alinhar botões e divs (e instalar styled-components ou tailwind)
+- &#x2610; Não esquecer de testar no mobile após refatoração
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+[Ir para o topo](#knights-challenge---frontend-react)
+
+## Descrição
+
+[Ir para o topo](#knights-challenge---frontend-react)
+
+## Instalação
+
+1. Faça um clone do repositório:
+```bash
+git clone git@github.com:rushxpush/knights-frontend.git
+cd knights-frontend-react
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+2. Monte a imagem e rode:
+```bash
+docker compose up --build
 ```
+
+3. Não esqueça de montar a imagem do backend e rodar. Link: [knights-challenge-backend](https://github.com/rushxpush/knights-backend)
+
+
+4. Acesse a página em [localhost:8080](http://localhost:8080)
+
+[Ir para o topo](#knights-challenge---frontend-react)
+
+5. Imagens
+
+[Ir para o topo](#knights-challenge---frontend-react)
+
+## Suporte
+
+Qualquer dúvida mande um email para [rafagarciadev@gmail.com](mailto:rafagarciadev@gmail.com)
+
+[Ir para o topo](#knights-challenge---frontend-react)
+
+## Lista de bugs
+
+[Ir para o topo](#knights-challenge---frontend-react)
+
+## Bugs Resolvidos
+
+
+[Ir para o topo](#knights-challenge---frontend-react)
