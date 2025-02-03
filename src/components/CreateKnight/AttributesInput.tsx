@@ -1,21 +1,23 @@
-import { Attribute } from "./CreateKnight.types";
+import { useAttributes } from "../../context/AttributesContext";
+import { Button } from "../ui/Button";
 
 interface InputProps {
-  list: Attribute,
   handleChange: (key: string, value: string) => void 
 }
 
-export function AttributesInput({list, handleChange}: InputProps) {
+export function AttributesInput({ handleChange }: InputProps) {
+  const { attributes, rollAttributes } = useAttributes();
 
   return (
     <div className="container border-container">
       <h2>Atributos</h2>
-      {Object.entries(list).map(([key, value]) => (
+      {Object.entries(attributes).map(([key, value]) => (
         <div key={key} className="input-container">
           <label>{key.charAt(0).toUpperCase() + key.slice(1)}</label>
           <input value={value} onChange={(e) => handleChange(key, e.target.value)} />
         </div>
       ))}
+      <Button text="Gerar Atributos" handleClick={rollAttributes} />
     </div>
   );
 }

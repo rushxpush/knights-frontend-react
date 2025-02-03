@@ -6,7 +6,6 @@ import { useWeapons } from "../../context/WeaponsContext";
 
 export function SelectWeapons() {
   const { weaponsList, checkedWeaponsId, toggleWeaponSelection, confirmSelectedWeapons } = useWeapons();
-  console.log('selectedWeaponsId: ', checkedWeaponsId)
   return (
     <div>
     <div className="container border-container input-checkbox-container">

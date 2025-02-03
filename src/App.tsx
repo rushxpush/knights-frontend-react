@@ -1,5 +1,6 @@
 import './App.css'
 import { CreateKnight } from './components/CreateKnight/CreateKnight'
+import { AttributesProvider } from './context/AttributesContext'
 import { WeaponsProvider } from './context/WeaponsContext'
 
 function App() {
@@ -7,7 +8,9 @@ function App() {
   return (
     <>
       <WeaponsProvider>
-        <CreateKnight />
+        <AttributesProvider>
+          <CreateKnight />
+        </AttributesProvider>
       </WeaponsProvider>
     </>
   )

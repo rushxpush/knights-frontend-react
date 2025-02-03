@@ -1,18 +1,20 @@
-import { useContext, useEffect, useState } from "react"
-import { Knight, Weapon } from "./CreateKnight.types";
+import { useState } from "react"
+import { Knight, ResponseKnight } from "./CreateKnight.types";
 import { AttributesInput } from "./AttributesInput";
 import { MainDataInput } from "./MainDataInput";
 import { SelectWeapons } from "./SelectWeapons";
-import { fetchWeaponsList } from "../../utils/weaponsData";
 import { SelectedWeaponsList } from "./SelectedWeaponsList";
 import { useWeapons } from "../../context/WeaponsContext";
+import { Button } from "../ui/Button";
+import { useAttributes } from "../../context/AttributesContext";
+import { postKnight } from "../../services/knightsService";
 
 export function CreateKnightForm() {
   const [knightData, setKnightData] = useState<Knight>({
     name: '',
     nickname: '',
-    birthdate: '',
-    weapon: [],
+    birthday: '',
+    weapons: [],
     attributes: {
       strength: 0,
       dexterity: 0,
@@ -25,6 +27,7 @@ export function CreateKnightForm() {
   });
 
   const { selectedWeapons } = useWeapons();
+  const { attributes, keyAttribute } = useAttributes();
 
   function handleSetData(fieldName: string, value: string|number): void {
     setKnightData(prev => ({
@@ -43,22 +46,48 @@ export function CreateKnightForm() {
     }))
   }
 
+  async function handleSave(e: Event): Promise<void> {
+    e.preventDefault();
+
+    const payload: Knight = {
+      name: knightData.name,
+      nickname: knightData.nickname,
+      birthday: knightData.birthday,
+      attributes: attributes,
+      weapons: selectedWeapons,
+      keyAttribute: keyAttribute
+    } 
+
+    console.log('%cpayload: ', 'background: green;', payload)
+
+    try {
+      const data: Promise<ResponseKnight> = postKnight(payload);
+      console.log('%cdata: ', 'background: cyan;', data)
+    }
+    catch(error) {
+      console.log('error: ', error);
+    }
+  }
+
   return (
     <div className="container">
       <h1>Criador de Knight</h1>
-      <form>
+      <form method="post" onSubmit={handleSave}>
         <MainDataInput 
           name={knightData.name} 
           nickname={knightData.nickname} 
-          birthdate={knightData.birthdate} 
+          birthday={knightData.birthday} 
           handleInput={handleSetData} 
         />
 
-        <AttributesInput list={knightData.attributes} handleChange={handleAttribute} />
+        <AttributesInput handleChange={handleAttribute} />
 
         <SelectWeapons />
 
         <SelectedWeaponsList selectedWeapons={selectedWeapons} />
+
+        {/* <Button text="Criar Knight" handleClick={handleSave} /> */}
+        <button type="submit">Criar Knight</button>
       </form>
     </div>
   )

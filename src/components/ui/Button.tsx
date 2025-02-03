@@ -1,6 +1,6 @@
 interface ButtonProps {
   text: string;
-  handleClick: (e: object) => void;
+  handleClick: (e: Event) => void;
 }
 
 export function Button({text, handleClick}: ButtonProps) {

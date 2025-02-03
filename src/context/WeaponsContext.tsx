@@ -39,7 +39,6 @@ export function WeaponsProvider({children}: {children: React.ReactNode}) {
   function confirmSelectedWeapons(e: Event) {
     e.preventDefault();
     const newSelectedWeapons: Weapon[] = weaponsList.filter((weapon: Weapon) => checkedWeaponsId.has(weapon.id));
-    console.log(newSelectedWeapons)
     setSelectedWeapons(newSelectedWeapons);
     setcheckedWeaponsId(new Set());
   }

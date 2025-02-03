@@ -1,10 +1,15 @@
 export interface Knight {
   name: string;
   nickname: string;
-  birthdate: string;
-  weapon: Weapon[];
+  birthday: string;
+  weapons: Weapon[];
   attributes: Attribute;
   keyAttribute: string;
+}
+
+export interface ResponseKnight extends Knight {
+  _id: string;
+  __v: number;
 }
 
 export interface Weapon {
@@ -22,4 +27,8 @@ export interface Attribute {
   intelligence: number;
   wisdom: number;
   charisma: number;
+}
+
+export interface AttributesList {
+  
 }

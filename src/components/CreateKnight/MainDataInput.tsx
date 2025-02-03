@@ -3,11 +3,11 @@ import { Input } from "../ui/Input";
 interface MainDataInputProps {
   name: string;
   nickname: string;
-  birthdate: string;
+  birthday: string;
   handleInput: (fieldName: string, value: string|number) => void
 }
 
-export function MainDataInput({name, nickname, birthdate, handleInput}: MainDataInputProps) {
+export function MainDataInput({name, nickname, birthday, handleInput}: MainDataInputProps) {
   return (
 
     <div className="container border-container">
@@ -15,7 +15,7 @@ export function MainDataInput({name, nickname, birthdate, handleInput}: MainData
 
       <Input type="text" label="Nome" fieldName="name" value={name} handleInput={handleInput} />
       <Input type="text" label="Apelido" fieldName="nickname" value={nickname} handleInput={handleInput} />
-      <Input type="date" label="Nascimento" fieldName="birthdate" value={birthdate} handleInput={handleInput} />
+      <Input type="date" label="Nascimento" fieldName="birthday" value={birthday} handleInput={handleInput} />
 
     </div>
 
