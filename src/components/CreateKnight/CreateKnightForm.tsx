@@ -2,7 +2,7 @@ import { useState } from "react"
 import { Knight, ResponseKnight } from "./CreateKnight.types";
 import { AttributesInput } from "./AttributesInput";
 import { MainDataInput } from "./MainDataInput";
-import { SelectWeapons } from "./SelectWeapons";
+import { SelectWeapons } from "./SelectWeaponsInput";
 import { SelectedWeaponsList } from "./SelectedWeaponsList";
 import { useWeapons } from "../../context/WeaponsContext";
 import { Button } from "../ui/Button";
@@ -46,7 +46,7 @@ export function CreateKnightForm() {
     }))
   }
 
-  async function handleSave(e: Event): Promise<void> {
+  async function handleSave(e: React.MouseEvent<HTMLButtonElement, MouseEvent>): Promise<void> {
     e.preventDefault();
 
     const payload: Knight = {
@@ -72,23 +72,23 @@ export function CreateKnightForm() {
   return (
     <div className="container">
       <h1>Criador de Knight</h1>
-      <form method="post" onSubmit={handleSave}>
-        <MainDataInput 
-          name={knightData.name} 
-          nickname={knightData.nickname} 
-          birthday={knightData.birthday} 
-          handleInput={handleSetData} 
-        />
+        <Button text="Criar Knight" style={{backgroundColor: 'green'}} handleClick={handleSave} />
+        <div className="container container-row">
+          <div className="container">
+            <MainDataInput 
+              name={knightData.name} 
+              nickname={knightData.nickname} 
+              birthday={knightData.birthday} 
+              handleInput={handleSetData} 
+            />
+            <SelectWeapons />
+            <SelectedWeaponsList selectedWeapons={selectedWeapons} />
+          </div>
 
-        <AttributesInput handleChange={handleAttribute} />
-
-        <SelectWeapons />
-
-        <SelectedWeaponsList selectedWeapons={selectedWeapons} />
-
-        {/* <Button text="Criar Knight" handleClick={handleSave} /> */}
-        <button type="submit">Criar Knight</button>
-      </form>
+          <div className="container">
+            <AttributesInput handleChange={handleAttribute} />
+          </div>
+        </div>
     </div>
   )
 }

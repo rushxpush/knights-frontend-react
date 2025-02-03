@@ -77,5 +77,4 @@ Qualquer dúvida mande um email para [rafagarciadev@gmail.com](mailto:rafagarcia
 
 ## Bugs Resolvidos
 
-
 [Ir para o topo](#knights-challenge---frontend-react)

@@ -21,7 +21,7 @@ export function AttributesProvider({children}: {children: React.ReactNode}) {
   })
   const [ keyAttribute, setKeyAttribute ] = useState<string>('strength');
 
-  function rollAttributes(e: Event) {
+  function rollAttributes(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
     const newAttributes = generateRandomAttributes();
     setAttributes(newAttributes);
