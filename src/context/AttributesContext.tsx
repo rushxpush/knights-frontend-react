@@ -5,13 +5,14 @@ import { generateRandomAttributes } from "../utils/rollDice";
 interface AttributesContextType {
   attributes: Attribute;
   keyAttribute: string;
-  rollAttributes: (e: Event) => void;
+  setKeyAttribute: React.Dispatch<React.SetStateAction<string>>;
+  rollAttributes: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
 const AttributesContext = createContext<AttributesContextType|undefined>(undefined);
 
 export function AttributesProvider({children}: {children: React.ReactNode}) {
-  const [ attributes,setAttributes ] = useState<Attribute>({
+  const [ attributes, setAttributes ] = useState<Attribute>({
     strength: 0,
     dexterity: 0,
     constitution: 0,
@@ -28,7 +29,7 @@ export function AttributesProvider({children}: {children: React.ReactNode}) {
   }
 
   return (
-    <AttributesContext.Provider value={{attributes, keyAttribute, rollAttributes}}>
+    <AttributesContext.Provider value={{attributes, keyAttribute, setKeyAttribute, rollAttributes}}>
       {children}
     </AttributesContext.Provider>
   )

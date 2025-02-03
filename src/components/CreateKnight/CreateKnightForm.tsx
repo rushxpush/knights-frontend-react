@@ -1,13 +1,14 @@
 import { useState } from "react"
-import { Knight, ResponseKnight } from "./CreateKnight.types";
-import { AttributesInput } from "./AttributesInput";
+import { Knight, ResponseKnight, Weapon } from "./CreateKnight.types";
+import { AttributesInput } from "./AttributesList";
 import { MainDataInput } from "./MainDataInput";
-import { SelectWeapons } from "./SelectWeaponsInput";
+import { WeaponsList } from "./WeaponsList";
 import { SelectedWeaponsList } from "./SelectedWeaponsList";
 import { useWeapons } from "../../context/WeaponsContext";
 import { Button } from "../ui/Button";
 import { useAttributes } from "../../context/AttributesContext";
 import { postKnight } from "../../services/knightsService";
+import { KeyAttributeSelect } from "./KeyAttributeSelect";
 
 export function CreateKnightForm() {
   const [knightData, setKnightData] = useState<Knight>({
@@ -26,7 +27,7 @@ export function CreateKnightForm() {
     keyAttribute: ''
   });
 
-  const { selectedWeapons } = useWeapons();
+  const { selectedWeapons, equippedWeaponId } = useWeapons();
   const { attributes, keyAttribute } = useAttributes();
 
   function handleSetData(fieldName: string, value: string|number): void {
@@ -54,7 +55,7 @@ export function CreateKnightForm() {
       nickname: knightData.nickname,
       birthday: knightData.birthday,
       attributes: attributes,
-      weapons: selectedWeapons,
+      weapons: setEquippedWeapon(selectedWeapons),
       keyAttribute: keyAttribute
     } 
 
@@ -69,6 +70,16 @@ export function CreateKnightForm() {
     }
   }
 
+  function setEquippedWeapon(selectedWeapons: Weapon[]): Weapon[] {
+    let processedWeapon: Weapon[] = structuredClone(selectedWeapons);
+    processedWeapon = processedWeapon.map((weapon: Weapon) => ({
+      ...weapon,
+      equipped: weapon.id === equippedWeaponId ? true : false
+    }));
+
+    return processedWeapon;
+  }
+
   return (
     <div className="container">
       <h1>Criador de Knight</h1>
@@ -81,13 +92,15 @@ export function CreateKnightForm() {
               birthday={knightData.birthday} 
               handleInput={handleSetData} 
             />
-            <SelectWeapons />
+            <WeaponsList />
             <SelectedWeaponsList selectedWeapons={selectedWeapons} />
           </div>
 
           <div className="container">
             <AttributesInput handleChange={handleAttribute} />
+            <KeyAttributeSelect />
           </div>
+
         </div>
     </div>
   )

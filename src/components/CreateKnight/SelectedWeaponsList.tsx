@@ -6,7 +6,7 @@ interface SelectedWeaponsListProps {
   selectedWeapons: Weapon[];
 }
 export function SelectedWeaponsList({selectedWeapons}: SelectedWeaponsListProps) {
-  const { equipSelectedWeapon, removeSelectedWeapon } = useWeapons();
+  const { equippedWeaponId, equipSelectedWeapon, removeSelectedWeapon } = useWeapons();
   return (
     <div className="container border-container">
       <h2>Armas Selecionadas</h2>
@@ -30,7 +30,7 @@ export function SelectedWeaponsList({selectedWeapons}: SelectedWeaponsListProps)
             <td>{weapon.mod}</td>
             <td>{weapon.attr}</td>
             <td><Button text="X" style={{backgroundColor: 'red'}} handleClick={() => removeSelectedWeapon(weapon.id)} /></td>
-            <td><Button text="O" style={{backgroundColor: 'green'}} handleClick={() => equipSelectedWeapon(weapon.id)} disabled={weapon.equipped} /></td>
+            <td><Button text="O" style={{backgroundColor: 'green'}} handleClick={() => equipSelectedWeapon(weapon.id)} disabled={weapon.id === equippedWeaponId} /></td>
           </tr>
         ))}
         </tbody>

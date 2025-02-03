@@ -30,5 +30,7 @@ export interface Attribute {
 }
 
 export interface AttributesList {
-  
+  id: string;
+  name: string;
+  value: string;
 }

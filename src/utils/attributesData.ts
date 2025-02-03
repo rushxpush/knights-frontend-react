@@ -1,6 +1,6 @@
-import { Attribute } from "../components/CreateKnight/CreateKnight.types";
+import { AttributesList } from "../components/CreateKnight/CreateKnight.types";
 
-const attributesData: Attribute[] = [
+const attributesData: AttributesList[] = [
     {
       id: '1',
       name: 'Strength',
@@ -33,7 +33,7 @@ const attributesData: Attribute[] = [
     },
   ]
 
-export const fetchAttributesData = async(): Promise<Attribute[]> => {
+export const fetchAttributesData = async(): Promise<AttributesList[]> => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(attributesData);

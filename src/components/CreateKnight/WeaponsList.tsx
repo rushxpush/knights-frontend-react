@@ -3,7 +3,7 @@ import { Weapon } from "./CreateKnight.types";
 import { Button } from "../ui/Button";
 import { useWeapons } from "../../context/WeaponsContext";
 
-export function SelectWeapons() {
+export function WeaponsList() {
   const { weaponsList, checkedWeaponsId, selectedWeaponsId, toggleWeaponSelection, confirmSelectedWeapons } = useWeapons();
   return (
     <div>

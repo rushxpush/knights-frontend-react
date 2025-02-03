@@ -7,8 +7,9 @@ interface WeaponsContextType {
   checkedWeaponsId: Set<string>;
   selectedWeapons: Weapon[];
   selectedWeaponsId: Set<string>;
+  equippedWeaponId: string|undefined;
   toggleWeaponSelection: (id: string) => void;
-  confirmSelectedWeapons: (e: Event) => void;
+  confirmSelectedWeapons: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   equipSelectedWeapon: (id: string) => void;
   removeSelectedWeapon: (id: string) => void;
 }
@@ -41,23 +42,16 @@ export function WeaponsProvider({children}: {children: React.ReactNode}) {
     })
   }
 
-  function confirmSelectedWeapons(e: Event) {
+  function confirmSelectedWeapons(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
 
-    const mergedIds = new Set([...checkedWeaponsId, ...selectedWeaponsId])
+    const mergedIds = new Set([...checkedWeaponsId, ...selectedWeaponsId]);
     const newSelectedWeapons: Weapon[] = weaponsList
       .filter((weapon: Weapon) => mergedIds.has(weapon.id))
-      // .map((weapon: Weapon, index: number) => ({
-      //   ...weapon,
-      //   equipped: selectedWeapons.some((w) => w.id === weapon.id && w.equipped) || index === 0 
-      // }));
 
-    const isAnyWeaponEquipped = newSelectedWeapons.some((weapon: Weapon) => weapon.equipped);
-    if (!isAnyWeaponEquipped) {
-      newSelectedWeapons[0]['equipped'] = true;
+    if (!equippedWeaponId) {
+      setEquippedWeaponId(newSelectedWeapons[0].id);
     }
-    console.log(isAnyWeaponEquipped)
-
     
     setSelectedWeapons(newSelectedWeapons);
     setSelectedWeaponsId(mergedIds);
@@ -66,11 +60,16 @@ export function WeaponsProvider({children}: {children: React.ReactNode}) {
 
   function removeSelectedWeapon(id: string) {
     const newSelectedWeapons = selectedWeapons.filter((weapon: Weapon) => weapon.id !== id);
-    const isAnyWeaponEquipped = newSelectedWeapons.some((weapon: Weapon) => weapon.equipped);
 
-    if (!isAnyWeaponEquipped) {
-      newSelectedWeapons[0]['equipped'] = true;
+    if (newSelectedWeapons.length > 0) {
+      if (equippedWeaponId === id) {
+        setEquippedWeaponId(newSelectedWeapons[0].id);
+      }
     }
+    else {
+      setEquippedWeaponId(undefined);
+    }
+
 
     setSelectedWeaponsId((prev) => {
       const newSelectedWeaponsId: Set<string> = new Set(prev);
@@ -90,16 +89,11 @@ export function WeaponsProvider({children}: {children: React.ReactNode}) {
   }
 
   function equipSelectedWeapon(id: string): void {
-    const newSelectedWeapons: Weapon[] = selectedWeapons.map((weapon) => ({
-      ...weapon,
-      equipped: (weapon.id === id) ? true : false
-    }));
-
-    setSelectedWeapons(newSelectedWeapons);
+    setEquippedWeaponId(id);
   }
 
   return (
-    <WeaponsContext.Provider value={{weaponsList, checkedWeaponsId, selectedWeaponsId, selectedWeapons, toggleWeaponSelection, confirmSelectedWeapons, equipSelectedWeapon, removeSelectedWeapon}}>
+    <WeaponsContext.Provider value={{weaponsList, checkedWeaponsId, selectedWeaponsId, equippedWeaponId, selectedWeapons, toggleWeaponSelection, confirmSelectedWeapons, equipSelectedWeapon, removeSelectedWeapon}}>
       {children}
     </WeaponsContext.Provider>
   )
