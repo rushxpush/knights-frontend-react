@@ -7,6 +7,12 @@ export interface Knight {
   keyAttribute: string;
 }
 
+export interface KnightMainData {
+  name: string;
+  nickname: string;
+  birthday: string;
+}
+
 export interface ResponseKnight extends Knight {
   _id: string;
   __v: number;

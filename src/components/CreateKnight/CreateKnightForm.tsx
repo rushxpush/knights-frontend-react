@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Knight, ResponseKnight, Weapon } from "./CreateKnight.types";
+import { Knight, KnightMainData, ResponseKnight, Weapon } from "./CreateKnight.types";
 import { AttributesInput } from "./AttributesList";
 import { MainDataInput } from "./MainDataInput";
 import { WeaponsList } from "./WeaponsList";
@@ -11,20 +11,10 @@ import { postKnight } from "../../services/knightsService";
 import { KeyAttributeSelect } from "./KeyAttributeSelect";
 
 export function CreateKnightForm() {
-  const [knightData, setKnightData] = useState<Knight>({
+  const [knightData, setKnightData] = useState<KnightMainData>({
     name: '',
     nickname: '',
     birthday: '',
-    weapons: [],
-    attributes: {
-      strength: 0,
-      dexterity: 0,
-      constitution: 0,
-      intelligence: 0,
-      wisdom: 0,
-      charisma: 0,
-    },
-    keyAttribute: ''
   });
 
   const { selectedWeapons, equippedWeaponId } = useWeapons();
@@ -34,16 +24,6 @@ export function CreateKnightForm() {
     setKnightData(prev => ({
       ...prev,
       [fieldName]: value
-    }))
-  }
-
-  function handleAttribute(key: string, value: string): void {
-    setKnightData((prev) => ({
-      ...prev,
-      attributes: {
-        ...prev.attributes,
-        [key]: value
-      }
     }))
   }
 
@@ -83,7 +63,7 @@ export function CreateKnightForm() {
   return (
     <div className="container">
       <h1>Criador de Knight</h1>
-        <Button text="Criar Knight" style={{backgroundColor: 'green'}} handleClick={handleSave} />
+        <Button data-test="createKnightButton" text="Criar Knight" style={{backgroundColor: 'green'}} handleClick={handleSave} />
         <div className="container container-row">
           <div className="container">
             <MainDataInput 
@@ -97,7 +77,7 @@ export function CreateKnightForm() {
           </div>
 
           <div className="container">
-            <AttributesInput handleChange={handleAttribute} />
+            <AttributesInput />
             <KeyAttributeSelect />
           </div>
 
