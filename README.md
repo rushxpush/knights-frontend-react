@@ -65,6 +65,8 @@ docker compose up --build
 
 [Ir para o topo](#knights-challenge---frontend-react)
 
+6. Bonus - Link para app no firebase: [https://knights-challenge.firebaseapp.com/](https://knights-challenge.firebaseapp.com/)
+
 ## Suporte
 
 Qualquer dúvida mande um email para [rafagarciadev@gmail.com](mailto:rafagarciadev@gmail.com)

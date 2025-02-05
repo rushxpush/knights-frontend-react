@@ -63,7 +63,7 @@ export function CreateKnightForm() {
   return (
     <div className="container">
       <h1>Criador de Knight</h1>
-        <Button data-test="createKnightButton" text="Criar Knight" style={{backgroundColor: 'green'}} handleClick={handleSave} />
+        <Button data-test="createKnightButton" text="Criar Knight" style={{backgroundColor: 'green'}} handleClick={handleSave} dataCy="createKnightButton" />
         <div className="container container-row">
           <div className="container">
             <MainDataInput 
@@ -78,7 +78,7 @@ export function CreateKnightForm() {
 
           <div className="container">
             <AttributesInput />
-            <KeyAttributeSelect />
+            <KeyAttributeSelect dataCy="keyAttributeSelect" />
           </div>
 
         </div>

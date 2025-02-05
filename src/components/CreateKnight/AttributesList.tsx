@@ -4,7 +4,7 @@ import { Attribute } from "./CreateKnight.types";
 
 export function AttributesInput() {
   const { attributes, setAttributes, rollAttributes } = useAttributes();
-  
+
   return (
     <div className="container border-container">
       <h2>Atributos</h2>
@@ -17,7 +17,7 @@ export function AttributesInput() {
           }))} />
         </div>
       ))}
-      <Button text="Gerar Atributos" handleClick={rollAttributes} />
+      <Button text="Gerar Atributos" handleClick={rollAttributes} dataCy="generateAttributesButton" />
     </div>
   );
 }

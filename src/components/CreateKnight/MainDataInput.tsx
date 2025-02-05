@@ -13,9 +13,9 @@ export function MainDataInput({name, nickname, birthday, handleInput}: MainDataI
     <div className="container border-container">
       <h2>Dados</h2>
 
-      <Input type="text" label="Nome" fieldName="name" value={name} handleInput={handleInput} />
-      <Input type="text" label="Apelido" fieldName="nickname" value={nickname} handleInput={handleInput} />
-      <Input type="date" label="Nascimento" fieldName="birthday" value={birthday} handleInput={handleInput} />
+      <Input type="text" label="Nome" fieldName="name" value={name} handleInput={handleInput} dataCy="knightNameInput" />
+      <Input type="text" label="Apelido" fieldName="nickname" value={nickname} handleInput={handleInput} dataCy="knightNicknameInput" />
+      <Input type="date" label="Nascimento" fieldName="birthday" value={birthday} handleInput={handleInput} dataCy="knightBirthdayInput" />
 
     </div>
 

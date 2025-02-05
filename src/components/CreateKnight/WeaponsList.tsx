@@ -19,10 +19,11 @@ export function WeaponsList() {
               disabled={selectedWeaponsId.has(weapon.id)}
               checked={checkedWeaponsId.has(weapon.id)}
               handleInput={toggleWeaponSelection} 
+              dataCy={weapon.name.toLowerCase() + 'Checkbox'}
             />
           ))
         }
-        <Button text="Adicionar Armas" handleClick={(e) => confirmSelectedWeapons(e)} />
+        <Button text="Adicionar Armas" handleClick={(e) => confirmSelectedWeapons(e)} dataCy="addWeaponsButton" />
       </div>
     </div>
   );

@@ -22,5 +22,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src"]
+  "include": ["src", "cypress/e2e/knights-frontend/cypress_test.cy.ts", "cypress/e2e/knights-frontend/fetching_knights_list.cy.ts", "cypress/e2e/knights-frontend/create_new_knight.cy.ts"]
 }
