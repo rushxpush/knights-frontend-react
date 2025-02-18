@@ -3,25 +3,38 @@ import { CreateKnightPage } from './pages/CreateKnightPage.tsx'
 import { AttributesProvider } from './context/AttributesContext'
 import { WeaponsProvider } from './context/WeaponsContext'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { ListKnightPage } from './pages/ListKnightPage.tsx'
+import { ShowKnightsPage } from './pages/ShowKnightsPage.tsx'
 import { Navbar } from './components/ui/Navbar.tsx'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { TestPage } from './pages/TestPage.tsx'
+import { Provider } from 'react-redux'
+import { store } from './store.ts'
+import { ReactQueryTest } from './pages/ReactQueryTest.tsx'
+import { LoginPage } from './pages/LoginPage.tsx'
 
-
+const queryClient = new QueryClient();
 
 function App() {
   return (
     <div className="app-container">
-      <BrowserRouter>
-        <WeaponsProvider>
-          <AttributesProvider>
-            <Navbar />
-            <Routes>
-              <Route path="/" element={<CreateKnightPage />} />
-              <Route path="list" element={<ListKnightPage />} />
-            </Routes>
-          </AttributesProvider>
-        </WeaponsProvider>
-      </BrowserRouter>
+      <Provider store={store}>
+        <QueryClientProvider client={queryClient}>
+          <BrowserRouter>
+            <WeaponsProvider>
+              <AttributesProvider>
+                <Navbar />
+                <Routes>
+                  <Route path="/" element={<CreateKnightPage />} />
+                  <Route path="list" element={<ShowKnightsPage />} />
+                  {/* <Route path="test" element={<TestPage />} /> */}
+                  {/* <Route path="react-query-test" element={<ReactQueryTest />} /> */}
+                  <Route path="login" element={<LoginPage />} />
+                </Routes>
+              </AttributesProvider>
+            </WeaponsProvider>
+          </BrowserRouter>
+        </QueryClientProvider>
+      </Provider>
     </div>
   )
 }

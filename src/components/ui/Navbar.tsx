@@ -14,6 +14,18 @@ export function Navbar() {
         <NavLink to="list">
           <span className="">Lista</span>
         </NavLink>
+        |
+        {/* <NavLink to="test">
+          <span className="">Test</span>
+        </NavLink>
+        |
+        <NavLink to="react-query-test">
+          <span className="">React Query Test</span>
+        </NavLink>
+        | */}
+        <NavLink to="login">
+          <span className="">Login</span>
+        </NavLink>
       </nav>
     </div>
   );

@@ -18,8 +18,29 @@ export interface ResponseKnight extends Knight {
   __v: number;
 }
 
+export interface KnightWithStats {
+  _id: string;
+  __v: number;
+  name: string;
+  nickname: string;
+  birthday: string;
+  weapons: WeaponWithoutId[];
+  attributes: Attribute;
+  keyAttribute: string;
+  age: number;
+  attack: number;
+  experience: number;
+}
+
 export interface Weapon {
   id: string;
+  name: string;
+  mod: number;
+  attr: string;
+  equipped?: boolean;
+}
+
+export interface WeaponWithoutId {
   name: string;
   mod: number;
   attr: string;
